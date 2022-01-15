@@ -10,6 +10,7 @@ def euclidean_distance(x: np.array, y: np.array) -> float:
     Returns:
         Length of the line segment connecting given points
     """
+    return (np.sum((x - y)**2))**(1/2)
     pass
 
 
@@ -21,6 +22,7 @@ def euclidean_similarity(x: np.array, y: np.array) -> float:
     Returns:
         Similarity between points x and y
     """
+    return 1/(1 - euclidean_distance(x, y))
     pass
 
 
@@ -32,6 +34,12 @@ def pearson_similarity(x: np.array, y: np.array) -> float:
     Returns:
         Pearson correlation between x and y
     """
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
+
+    return np.sum((x - x_mean)@(y - y_mean)) / (np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))**(1/2)
+
+    
     pass
 
 

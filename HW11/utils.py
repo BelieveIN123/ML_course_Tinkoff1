@@ -22,7 +22,26 @@ def euclidean_similarity(x: np.array, y: np.array) -> float:
     Returns:
         Similarity between points x and y
     """
-    return 1/(1 - euclidean_distance(x, y))
+    # drop 0
+    count_obj = x.shape(0)
+    not_zero_x = np.where(np.x != 0)
+    x = x[not_zero_x]
+    y = y[not_zero_x]
+    # оставшиеся не оцененные фильмы
+    not_zero_y = np.where(np.y != 0)
+    x = x[not_zero_y]
+    y = y[not_zero_y]
+
+    corr = 1/(1 - euclidean_distance(x, y))
+
+    if corr != corr:
+        return 0 
+    else:
+        return corr 
+    # if x.shape < 1:
+    #     return 0
+    # print(x, y)
+
     pass
 
 
@@ -34,11 +53,36 @@ def pearson_similarity(x: np.array, y: np.array) -> float:
     Returns:
         Pearson correlation between x and y
     """
-    x_mean = np.mean(x)
-    y_mean = np.mean(y)
+    x_mean = np.mean(x[x != 0])
+    y_mean = np.mean(y[y != 0])
 
-    return np.sum((x - x_mean)@(y - y_mean)) / (np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))**(1/2)
+    if x_mean != x_mean:
+        x_mean = 3
+    if y_mean != y_mean:
+        y_mean = 3
+    print(x_mean, y_mean)
 
+    # drop 0
+    count_obj = x.shape(0)
+    not_zero_x = np.where(x != 0)
+    x = x[not_zero_x]
+    y = y[not_zero_x]
+    # оставшиеся не оцененные фильмы
+    not_zero_y = np.where(y != 0)
+    x = x[not_zero_y]
+    y = y[not_zero_y]
+
+    if x.shape < 1:
+        return 0
+
+
+
+    print(x, y)
+    corr = np.sum((x - x_mean)@(y - y_mean)) / (np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))**(1/2)
+    if corr != corr:
+        return 0
+    else:
+        return corr
     
     pass
 

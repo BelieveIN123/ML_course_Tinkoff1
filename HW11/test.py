@@ -82,3 +82,5 @@ def test_mapk():
     actual = [[1,2,3]] * len(predicted)
     expected_score = 0.4
     np.testing.assert_almost_equal(mapk(actual, predicted, k=3), expected_score)
+
+    print('Выполнено')

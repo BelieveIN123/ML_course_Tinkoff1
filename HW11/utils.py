@@ -97,7 +97,14 @@ def apk(actual: np.array, predicted: np.array, k: int = 10) -> float:
     Returns:
         The average precision at k over the input lists
     """
-    pass
+
+
+
+    act_set = set(actual.flatten())
+    pred_set = set(predicted[:k].flatten())
+    result = len(act_set & pred_set) / float(k)
+    return result
+
 
 
 def mapk(actual: np.array, predicted: np.array, k: int = 10) -> float:
@@ -110,4 +117,7 @@ def mapk(actual: np.array, predicted: np.array, k: int = 10) -> float:
     Returns:
         The mean average precision at k over the input lists
     """
-    pass
+    act_set = set(actual.flatten())
+    pred_set = set(predicted[:k].flatten())
+    result = len(act_set & pred_set) / float(len(act_set))
+    return result
